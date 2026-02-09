@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Form = () => {
+  const [status, setStatus] = useState(null); // success | error
+
   return (
     <motion.section
       className="my-20 px-4 sm:px-8 md:px-16 lg:px-24"
@@ -21,13 +23,13 @@ const Form = () => {
         Feel Free To Message Us
       </motion.h1>
 
+      {/* Formspree form */}
       <motion.form
+        action="https://formspree.io/f/mkovgbgw" // 👈 replace with your Formspree endpoint
+        method="POST"
         className="max-w-2xl mx-auto flex flex-col gap-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
+        onSubmit={(e) => setStatus('success')} // optional simple success
       >
-        {/* First Name and Second Name */}
         <motion.div
           className="flex flex-col sm:flex-row gap-4"
           initial={{ x: -50, opacity: 0 }}
@@ -51,7 +53,6 @@ const Form = () => {
           />
         </motion.div>
 
-        {/* Email */}
         <motion.input
           type="email"
           name="email"
@@ -64,7 +65,6 @@ const Form = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         />
 
-        {/* Message */}
         <motion.textarea
           name="message"
           placeholder="Your Message"
@@ -77,7 +77,6 @@ const Form = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         ></motion.textarea>
 
-        {/* Submit Button */}
         <motion.button
           type="submit"
           className="bg-orange-400 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-500 transition-colors"
@@ -88,6 +87,13 @@ const Form = () => {
         >
           Send Message
         </motion.button>
+
+        {/* Optional status */}
+        {status === 'success' && (
+          <p className="text-green-600 text-center mt-2">
+            Your message has been sent successfully!
+          </p>
+        )}
       </motion.form>
     </motion.section>
   );
