@@ -10,7 +10,7 @@ const Abouts = () => {
 
         
         <div className="w-full md:w-1/2">
-          <span className="text-orange-500 font-semibold uppercase tracking-wide">
+          <span className="text-orange-500 font-semibold uppercase  tracking-wide">
             Know About Us
           </span>
           <h1 className="text-4xl lg:text-5xl font-bold mt-2 text-gray-900">
